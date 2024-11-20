@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Infinite Grenades"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(grenades, game.dll, 41 FF 08 4A 8B 84 ED )
+
+grenades:
+nop 3
+
+[DISABLE]
+grenades:
+db 41 FF 08
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Infinite Ammo"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(Ammunition,game.dll,41 83 2C C2 01 4D 8D 04 C2 49 8B 84 CA)
+registersymbol(Ammunition)
+
+Ammunition+4:
+db 00
+
+[DISABLE]
+Ammunition+4:
+db 01
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Infinite Syringes"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(Syringes, game.dll,41 FF CF 3B C2 74 61)
+registersymbol(Syringes)
+
+Syringes:
+nop 3
+
+[DISABLE]
+Syringes:
+db 41 FF CF
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"No Reload"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(NoReload,game.dll,41 89 28 49 8B 84 CA 28 20 00 00 8B 48 10)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  nop
+  mov rax,[r10+rcx*8+00002028]
+  mov ecx,[rax+10]
+  jmp return
+
+NoReload:
+  jmp far newmem
+return:
+registersymbol(NoReload)
+
+[DISABLE]
+
+NoReload:
+  db 41 89 28 49 8B 84 CA 28 20 00 00 8B 48 10
+
+unregistersymbol(NoReload)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"No Laser Cannon Overheat"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(Laser,game.dll,F3 0F 11 09 4C 8B C1 49 8B 84 DF 30 20 00 00)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  nop
+  mov r8,rcx
+  mov rax,[r15+rbx*8+00002030]
+  jmp return
+
+Laser:
+  jmp far newmem
+  nop
+return:
+registersymbol(Laser)
+
+[DISABLE]
+
+Laser:
+  db F3 0F 11 09 4C 8B C1 49 8B 84 DF 30 20 00 00
+
+unregistersymbol(Laser)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Unlimited Stamina"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(Stamina,game.dll,F3 0F 5F C8 F3 41 0F 11 08)
+
+Stamina+4:
+ nop 5
+registersymbol(Stamina)
+
+[DISABLE]
+
+Stamina+4:
+  db F3 41 0F 11 08
+
+unregistersymbol(Stamina)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"Unlimited Mission Time"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscan(UnlimitedMTime, F3 43 0F 11 84 F4 88 64 03 00)
+label(_UnlimitedMTime)
+registersymbol(_UnlimitedMTime)
+
+UnlimitedMTime:
+_UnlimitedMTime:
+db 90 90 90 90 90 90 90 90 90 90
+
+[DISABLE]
+_UnlimitedMTime:
+db F3 43 0F 11 84 F4 88 64 03 00
+
+unregistersymbol(_UnlimitedMTime)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"Invulnerability"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(invulnerable,game.dll,45 89 38 49 8B 84 DE 28 04 00 00 8B 48 10)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+nop
+//mov [r8],r15d
+mov rax,[r14+rbx*8+00000428]
+mov ecx,[rax+10]
+jmp return
+
+invulnerable:
+jmp far newmem
+return:
+registersymbol(invulnerable)
+
+[DISABLE]
+
+invulnerable:
+db 45 89 38 49 8B 84 DE 28 04 00 00 8B 48 10
+
+unregistersymbol(invulnerable)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"Max Resources"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">{ Game   : helldivers2.exe
+  Version:
+  Date   : 2024-02-27
+  Author : admin
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(samples,game.dll,4C 8B 15 ? ? ? ? 45 8B F0 0F 84 ? ? ? ? 45 8B 8A) // should be unique
+alloc(newmem,$1000)
+
+label(return)
+label(resource_ptr)
+
+(DWORD)[samples+03]+samples+07:
+resource_ptr:
+
+newmem:
+ push rax
+ mov rax,[resource_ptr]
+ mov [rax+17EC],#499
+ mov [rax+17F0],#249
+ mov [rax+17F4],#99
+ mov r10,rax
+ pop rax
+jmp return
+
+samples:
+  jmp newmem
+  nop 2
+return:
+registersymbol(samples)
+
+[DISABLE]
+
+samples:
+  mov r10,[resource_ptr]
+
+unregistersymbol(samples)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+5286BD
+
+game.dll+52869D: CC                    - int 3
+game.dll+52869E: CC                    - int 3
+game.dll+52869F: CC                    - int 3
+game.dll+5286A0: 45 85 C9              - test r9d,r9d
+game.dll+5286A3: 0F 84 EA 00 00 00     - je game.dll+528793
+game.dll+5286A9: 48 89 6C 24 20        - mov [rsp+20],rbp
+game.dll+5286AE: 41 56                 - push r14
+game.dll+5286B0: 48 83 EC 20           - sub rsp,20
+game.dll+5286B4: 3B 15 92 0E 1E 01     - cmp edx,[game.dll+170954C]
+game.dll+5286BA: 41 8B E9              - mov ebp,r9d
+// ---------- INJECTING HERE ----------
+game.dll+5286BD: 4C 8B 15 54 EB 14 01  - mov r10,[game.dll+1677218]
+// ---------- DONE INJECTING  ----------
+game.dll+5286C4: 45 8B F0              - mov r14d,r8d
+game.dll+5286C7: 0F 84 7D 00 00 00     - je game.dll+52874A
+game.dll+5286CD: 45 8B 8A 18 08 00 00  - mov r9d,[r10+00000818]
+game.dll+5286D4: 45 33 C0              - xor r8d,r8d
+game.dll+5286D7: 45 8B 9A 20 08 00 00  - mov r11d,[r10+00000820]
+game.dll+5286DE: 48 89 5C 24 30        - mov [rsp+30],rbx
+game.dll+5286E3: 48 89 74 24 38        - mov [rsp+38],rsi
+game.dll+5286E8: 44 0F AF DA           - imul r11d,edx
+game.dll+5286EC: 41 8D 71 FF           - lea esi,[r9-01]
+game.dll+5286F0: 48 89 7C 24 40        - mov [rsp+40],rdi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"Infinite Strategems"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>// Game Executable   : helldivers2.exe
+// Author            : gir489
+// Executable Version: 1.8.16570.0
+// MD5 Signature     : 4BBCD22B016AF1F87FE9F374EDBA78CF
+// EXE Compile Date  : February 16, 2024 11:03 AM
+// Script Date       : February 27, 2024 05:18 PM
+[ENABLE]
+aobscanmodule(aob_Strategems,game.dll,C0 F3 48 0F 2C C8 48 03 48 18 48 89 8C 37 40 02 00 00)
+registersymbol(aob_Strategems)
+
+aob_Strategems+06:
+  nop 4
+
+aob_Strategems+19:
+lea eax,[rcx]
+nop
+
+aob_Strategems+21:
+lea eax,[rcx]
+nop
+
+
+[DISABLE]
+aob_Strategems+06:
+  db 48 03 48 18
+
+aob_Strategems+19:
+lea eax,[rcx-1]
+
+aob_Strategems+21:
+lea eax,[rcx-1]
+
+unregistersymbol(aob_Strategems)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+7F423F
+
+game.dll+7F41D5: 4C 8D 4C 24 30           - lea r9,[rsp+30]
+game.dll+7F41DA: 44 8B 84 37 D0 01 00 00  - mov r8d,[rdi+rsi+000001D0]
+game.dll+7F41E2: 48 8B D3                 - mov rdx,rbx
+game.dll+7F41E5: C6 44 24 20 00           - mov byte ptr [rsp+20],00
+game.dll+7F41EA: 48 8B 48 18              - mov rcx,[rax+18]
+game.dll+7F41EE: 48 89 8C 37 30 02 00 00  - mov [rdi+rsi+00000230],rcx
+game.dll+7F41F6: F2 0F 10 44 24 30        - movsd xmm0,[rsp+30]
+game.dll+7F41FC: 8B 44 24 38              - mov eax,[rsp+38]
+game.dll+7F4200: 48 8B 0D D1 2B E8 00     - mov rcx,[game.dll+1676DD8]
+game.dll+7F4207: F2 0F 11 44 24 40        - movsd [rsp+40],xmm0
+game.dll+7F420D: 89 44 24 48              - mov [rsp+48],eax
+game.dll+7F4211: E8 9A 6E E0 FF           - call game.dll+5FB0B0
+game.dll+7F4216: 8B 94 37 D0 01 00 00     - mov edx,[rdi+rsi+000001D0]
+game.dll+7F421D: 4C 8D 44 24 40           - lea r8,[rsp+40]
+game.dll+7F4222: 0F 28 F0                 - movaps xmm6,xmm0
+game.dll+7F4225: E8 F6 B9 BC FF           - call game.dll+3BFC20
+game.dll+7F422A: 48 8B 05 F7 24 E8 00     - mov rax,[game.dll+1676728]
+game.dll+7F4231: F3 0F 58 C6              - addss xmm0,xmm6
+game.dll+7F4235: F3 41 0F 59 C0           - mulss xmm0,xmm8
+game.dll+7F423A: F3 48 0F 2C C8           - cvttss2si rcx,xmm0
+// ---------- INJECTING HERE ----------
+game.dll+7F423F: 48 03 48 18              - add rcx,[rax+18]
+// ---------- DONE INJECTING  ----------
+game.dll+7F4243: 48 89 8C 37 40 02 00 00  - mov [rdi+rsi+00000240],rcx
+game.dll+7F424B: 8B 8C 37 E8 01 00 00     - mov ecx,[rdi+rsi+000001E8]
+game.dll+7F4252: 8D 41 FF                 - lea eax,[rcx-01]
+game.dll+7F4255: 83 F8 FD                 - cmp eax,-03
+game.dll+7F4258: 77 0A                    - ja game.dll+7F4264
+game.dll+7F425A: 8D 41 FF                 - lea eax,[rcx-01]
+game.dll+7F425D: 89 84 37 E8 01 00 00     - mov [rdi+rsi+000001E8],eax
+game.dll+7F4264: 45 33 C9                 - xor r9d,r9d
+game.dll+7F4267: F3 0F 11 7C 24 20        - movss [rsp+20],xmm7
+game.dll+7F426D: 45 8B C4                 - mov r8d,r12d
+game.dll+7F4270: 48 8B D3                 - mov rdx,rbx
+game.dll+7F4273: 49 8B CE                 - mov rcx,r14
+game.dll+7F4276: E8 E5 6B 37 00           - call game.dll+B6AE60
+game.dll+7F427B: 44 8B 44 24 38           - mov r8d,[rsp+38]
+game.dll+7F4280: F2 0F 10 44 24 30        - movsd xmm0,[rsp+30]
+game.dll+7F4286: 44 89 44 24 58           - mov [rsp+58],r8d
+game.dll+7F428B: 4C 8D 4C 24 50           - lea r9,[rsp+50]
+game.dll+7F4290: 44 8B 84 37 D0 01 00 00  - mov r8d,[rdi+rsi+000001D0]
+game.dll+7F4298: 8B CB                    - mov ecx,ebx
+game.dll+7F429A: F2 0F 11 44 24 50        - movsd [rsp+50],xmm0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"Infinite Special Weapon"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>// Game Executable   : helldivers2.exe
+// Author            : gir489
+// Executable Version: 1.8.16570.0
+// MD5 Signature     : 4BBCD22B016AF1F87FE9F374EDBA78CF
+// EXE Compile Date  : February 16, 2024 11:03 AM
+// Script Date       : February 27, 2024 07:49 PM
+[ENABLE]
+aobscanmodule(aob_SpecialWeapon,game.dll,44 89 7F 08 41 80 BC 24)
+registersymbol(aob_SpecialWeapon)
+
+aob_SpecialWeapon:
+nop 4
+
+[DISABLE]
+aob_SpecialWeapon:
+  db 44 89 7F 08
+
+unregistersymbol(aob_SpecialWeapon)
+dealloc(newmem_example)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+390411
+
+game.dll+3903D8: E8 F3 CE FB FF              - call game.dll+34D2D0
+game.dll+3903DD: 48 8B C8                    - mov rcx,rax
+game.dll+3903E0: 45 38 BC 24 9C 00 00 00     - cmp [r12+0000009C],r15b
+game.dll+3903E8: 74 25                       - je game.dll+39040F
+game.dll+3903EA: 8B 07                       - mov eax,[rdi]
+game.dll+3903EC: 85 C0                       - test eax,eax
+game.dll+3903EE: 74 1F                       - je game.dll+39040F
+game.dll+3903F0: 44 39 7F 04                 - cmp [rdi+04],r15d
+game.dll+3903F4: 75 07                       - jne game.dll+3903FD
+game.dll+3903F6: 44 8B 39                    - mov r15d,[rcx]
+game.dll+3903F9: 32 C9                       - xor cl,cl
+game.dll+3903FB: EB 14                       - jmp game.dll+390411
+game.dll+3903FD: FF C8                       - dec eax
+game.dll+3903FF: 99                          - cdq
+game.dll+390400: F7 7F 0C                    - idiv [rdi+0C]
+game.dll+390403: 32 C9                       - xor cl,cl
+game.dll+390405: 48 63 C2                    - movsxd  rax,edx
+game.dll+390408: 45 8B 7C 84 04              - mov r15d,[r12+rax*4+04]
+game.dll+39040D: EB 02                       - jmp game.dll+390411
+game.dll+39040F: B1 01                       - mov cl,01
+// ---------- INJECTING HERE ----------
+game.dll+390411: 44 89 7F 08                 - mov [rdi+08],r15d
+// ---------- DONE INJECTING  ----------
+game.dll+390415: 41 80 BC 24 9C 00 00 00 00  - cmp byte ptr [r12+0000009C],00
+game.dll+39041E: 74 05                       - je game.dll+390425
+game.dll+390420: 45 85 FF                    - test r15d,r15d
+game.dll+390423: 74 02                       - je game.dll+390427
+game.dll+390425: FF 0F                       - dec [rdi]
+game.dll+390427: 83 FE FF                    - cmp esi,-01
+game.dll+39042A: 48 8B 74 24 70              - mov rsi,[rsp+70]
+game.dll+39042F: 0F 84 1F 02 00 00           - je game.dll+390654
+game.dll+390435: 48 8B 84 24 88 00 00 00     - mov rax,[rsp+00000088]
+game.dll+39043D: 48 8B 84 F0 38 20 00 00     - mov rax,[rax+rsi*8+00002038]
+game.dll+390445: F6 40 14 01                 - test byte ptr [rax+14],01
+game.dll+390449: 0F 84 05 02 00 00           - je game.dll+390654
+game.dll+39044F: 41 80 BC 24 9C 00 00 00 00  - cmp byte ptr [r12+0000009C],00
+game.dll+390458: 74 33                       - je game.dll+39048D
+game.dll+39045A: 84 C9                       - test cl,cl
+game.dll+39045C: 74 2F                       - je game.dll+39048D
+game.dll+39045E: 4A 8D 04 F5 BB 08 00 00     - lea rax,[r14*8+000008BB]
+game.dll+390466: BA 74 3E 89 4A              - mov edx,4A893E74
+game.dll+39046B: 49 03 C6                    - add rax,r14
+game.dll+39046E: 4C 8D 04 C5 00 00 00 00     - lea r8,[rax*8+00000000]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"Infinite Autocannon Reload"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>// Game Executable   : helldivers2.exe
+// Author            : gir489
+// Executable Version: 1.8.16570.0
+// MD5 Signature     : 4BBCD22B016AF1F87FE9F374EDBA78CF
+// EXE Compile Date  : February 16, 2024 11:03 AM
+// Script Date       : February 27, 2024 07:58 PM
+[ENABLE]
+aobscanmodule(aob_Autocannon,game.dll,2B C6 4D 8D 85 48 04 00 00)
+registersymbol(aob_Autocannon)
+
+aob_Autocannon:
+nop 2
+
+[DISABLE]
+aob_Autocannon:
+  db 2B C6
+
+unregistersymbol(aob_Autocannon)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+5F7CA7
+
+game.dll+5F7C4E: C6 44 24 20 01           - mov byte ptr [rsp+20],01
+game.dll+5F7C53: E8 18 10 52 00           - call game.dll+B18C70
+game.dll+5F7C58: EB 35                    - jmp game.dll+5F7C8F
+game.dll+5F7C5A: 85 FF                    - test edi,edi
+game.dll+5F7C5C: 74 31                    - je game.dll+5F7C8F
+game.dll+5F7C5E: 48 8B 0D AB D3 10 01     - mov rcx,[game.dll+1705010]
+game.dll+5F7C65: 0F 57 DB                 - xorps xmm3,xmm3
+game.dll+5F7C68: 44 89 74 24 40           - mov [rsp+40],r14d
+game.dll+5F7C6D: 44 8B C3                 - mov r8d,ebx
+game.dll+5F7C70: 44 89 74 24 38           - mov [rsp+38],r14d
+game.dll+5F7C75: 8B D7                    - mov edx,edi
+game.dll+5F7C77: 4C 89 74 24 28           - mov [rsp+28],r14
+game.dll+5F7C7C: C6 44 24 20 01           - mov byte ptr [rsp+20],01
+game.dll+5F7C81: E8 EA 0F 52 00           - call game.dll+B18C70
+game.dll+5F7C86: EB 07                    - jmp game.dll+5F7C8F
+game.dll+5F7C88: 8B B4 24 D0 00 00 00     - mov esi,[rsp+000000D0]
+game.dll+5F7C8F: 4A 8D 0C E5 00 00 00 00  - lea rcx,[r12*8+00000000]
+game.dll+5F7C97: 42 8B 84 29 48 04 00 00  - mov eax,[rcx+r13+00000448]
+game.dll+5F7C9F: 3B F0                    - cmp esi,eax
+game.dll+5F7CA1: 0F 87 D8 00 00 00        - ja game.dll+5F7D7F
+// ---------- INJECTING HERE ----------
+game.dll+5F7CA7: 2B C6                    - sub eax,esi
+// ---------- DONE INJECTING  ----------
+game.dll+5F7CA9: 4D 8D 85 48 04 00 00     - lea r8,[r13+00000448]
+game.dll+5F7CB0: 42 89 84 29 48 04 00 00  - mov [rcx+r13+00000448],eax
+game.dll+5F7CB8: 4C 03 C1                 - add r8,rcx
+game.dll+5F7CBB: 4B 8B 84 E5 28 02 00 00  - mov rax,[r13+r12*8+00000228]
+game.dll+5F7CC3: BA 52 97 88 69           - mov edx,69889752
+game.dll+5F7CC8: 8B 48 10                 - mov ecx,[rax+10]
+game.dll+5F7CCB: E8 F0 F8 35 00           - call game.dll+9575C0
+game.dll+5F7CD0: E9 AA 00 00 00           - jmp game.dll+5F7D7F
+game.dll+5F7CD5: 4D 8B E7                 - mov r12,r15
+game.dll+5F7CD8: 4B 8B 84 E5 28 02 00 00  - mov rax,[r13+r12*8+00000228]
+game.dll+5F7CE0: 8B 70 10                 - mov esi,[rax+10]
+game.dll+5F7CE3: 81 FE FF 3F 00 00        - cmp esi,00003FFF
+game.dll+5F7CE9: 75 09                    - jne game.dll+5F7CF4
+game.dll+5F7CEB: 48 C7 C7 FF FF FF FF     - mov rdi,FFFFFFFFFFFFFFFF
+game.dll+5F7CF2: EB 20                    - jmp game.dll+5F7D14
+game.dll+5F7CF4: 48 8B 05 E5 E9 07 01     - mov rax,[game.dll+16766E0]
+game.dll+5F7CFB: 48 8B 78 40              - mov rdi,[rax+40]
+game.dll+5F7CFF: 48 8B 40 38              - mov rax,[rax+38]
+game.dll+5F7D03: FF 50 08                 - call qword ptr [rax+08]
+game.dll+5F7D06: 48 8B C8                 - mov rcx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"Speedhack"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : helldivers2.exe
+  Version: 
+  Date   : 2024-03-04
+  Author : Sleepy
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.dll,F3 41 ? ? ? ? F3 41 ? ? ? ? 0F 28 ? F3 0F ? ? 0F 5A) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r14+0C],(float)6
+code:
+  mulss xmm2,[r14+0C]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 41 0F 59 56 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+5302AE
+
+game.dll+530278: 44 0F 2F D8              - comiss xmm11,xmm0
+game.dll+53027C: 77 09                    - ja game.dll+530287
+game.dll+53027E: 45 0F 28 DC              - movaps xmm11,xmm12
+game.dll+530282: F3 44 0F 5D D8           - minss xmm11,xmm0
+game.dll+530287: F3 41 0F 10 56 04        - movss xmm2,[r14+04]
+game.dll+53028D: F3 41 0F 59 16           - mulss xmm2,[r14]
+game.dll+530292: F3 41 0F 10 6E 14        - movss xmm5,[r14+14]
+game.dll+530298: F2 0F 10 05 88 F9 A7 00  - movsd xmm0,[game.dll+FAFC28]
+game.dll+5302A0: F3 41 0F 59 56 08        - mulss xmm2,[r14+08]
+game.dll+5302A6: F3 0F 10 98 B8 0C 00 00  - movss xmm3,[rax+00000CB8]
+// ---------- INJECTING HERE ----------
+game.dll+5302AE: F3 41 0F 59 56 0C        - mulss xmm2,[r14+0C]
+// ---------- DONE INJECTING  ----------
+game.dll+5302B4: F3 41 0F 59 56 10        - mulss xmm2,[r14+10]
+game.dll+5302BA: 0F 28 E2                 - movaps xmm4,xmm2
+game.dll+5302BD: F3 0F 5C E5              - subss xmm4,xmm5
+game.dll+5302C1: 0F 5A CC                 - cvtps2pd xmm1,xmm4
+game.dll+5302C4: 0F 54 0D 45 2E A8 00     - andps xmm1,[game.dll+FB3110]
+game.dll+5302CB: 66 0F 2F C1              - comisd xmm0,xmm1
+game.dll+5302CF: 77 21                    - ja game.dll+5302F2
+game.dll+5302D1: F3 41 0F 59 DD           - mulss xmm3,xmm13
+game.dll+5302D6: 44 0F 2F C3              - comiss xmm8,xmm3
+game.dll+5302DA: 76 06                    - jna game.dll+5302E2
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"Rapid Fire"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : helldivers2.exe
+  Version: 
+  Date   : 2024-03-04
+  Author : Sleepy
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.dll,F3 41 ? ? ? ? ? ? ? ? 43 0F ? ? ? ? ? ? ? 7A) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r14+rax*4+00014054],(float)5000
+code:
+  movss xmm0,[r14+rax*4+00014054]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 41 0F 10 84 86 54 40 01 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+400545
+
+game.dll+40050B: 4C 8D 05 0E 60 B6 00           - lea r8,[game.dll+F66520]
+game.dll+400512: F3 0F 10 9C DF D8 2D 00 00     - movss xmm3,[rdi+rbx*8+00002DD8]
+game.dll+40051B: 4B 8B 94 37 68 5C 00 00        - mov rdx,[r15+r14+00005C68]
+game.dll+400523: 49 8B 4E 20                    - mov rcx,[r14+20]
+game.dll+400527: FF 90 F8 02 00 00              - call qword ptr [rax+000002F8]
+game.dll+40052D: C6 84 DF DF 2D 00 00 00        - mov byte ptr [rdi+rbx*8+00002DDF],00
+game.dll+400535: EB 05                          - jmp game.dll+40053C
+game.dll+400537: 4C 8B 6C 24 68                 - mov r13,[rsp+68]
+game.dll+40053C: 4C 8B 64 24 78                 - mov r12,[rsp+78]
+game.dll+400541: 4B 8D 04 64                    - lea rax,[r12+r12*2]
+// ---------- INJECTING HERE ----------
+game.dll+400545: F3 41 0F 10 84 86 54 40 01 00  - movss xmm0,[r14+rax*4+00014054]
+// ---------- DONE INJECTING  ----------
+game.dll+40054F: 43 0F 2E 84 37 A4 5C 00 00     - ucomiss xmm0,[r15+r14+00005CA4]
+game.dll+400558: 7A 02                          - jp game.dll+40055C
+game.dll+40055A: 74 45                          - je game.dll+4005A1
+game.dll+40055C: F3 0F 10 1D B4 02 BB 00        - movss xmm3,[game.dll+FB0818]
+game.dll+400564: 48 8B 05 2D 72 27 01           - mov rax,[game.dll+1677798]
+game.dll+40056B: 4B 8B 94 37 68 5C 00 00        - mov rdx,[r15+r14+00005C68]
+game.dll+400573: F3 0F 5E D8                    - divss xmm3,xmm0
+game.dll+400577: F3 43 0F 11 84 37 A4 5C 00 00  - movss [r15+r14+00005CA4],xmm0
+game.dll+400581: F3 43 0F 11 9C 37 5C 5C 00 00  - movss [r15+r14+00005C5C],xmm3
+game.dll+40058B: 48 3B 10                       - cmp rdx,[rax]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"Inf Super Credits"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : helldivers2.exe
+  Version: 
+  Date   : 2024-03-04
+  Author : Sleepy
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJECT,game.dll,44 8B ? ? ? ? ? ? 41 8B ? 48 83 C4 ? 5F C3 33 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+rax+000052A8],#10000
+code:
+  mov r9d,[rcx+rax+000052A8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 8B 8C 01 A8 52 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+B4E759
+
+game.dll+B4E737: 48 83 C1 18              - add rcx,18
+game.dll+B4E73B: 41 3B D0                 - cmp edx,r8d
+game.dll+B4E73E: 72 F0                    - jb game.dll+B4E730
+game.dll+B4E740: 41 8B C1                 - mov eax,r9d
+game.dll+B4E743: 48 83 C4 20              - add rsp,20
+game.dll+B4E747: 5F                       - pop rdi
+game.dll+B4E748: C3                       - ret 
+game.dll+B4E749: 8B 01                    - mov eax,[rcx]
+game.dll+B4E74B: 48 69 C8 E8 00 00 00     - imul rcx,rax,000000E8
+game.dll+B4E752: 48 8B 05 7F BB BB 00     - mov rax,[game.dll+170A2D8]
+// ---------- INJECTING HERE ----------
+game.dll+B4E759: 44 8B 8C 01 A8 52 00 00  - mov r9d,[rcx+rax+000052A8]
+// ---------- DONE INJECTING  ----------
+game.dll+B4E761: 41 8B C1                 - mov eax,r9d
+game.dll+B4E764: 48 83 C4 20              - add rsp,20
+game.dll+B4E768: 5F                       - pop rdi
+game.dll+B4E769: C3                       - ret 
+game.dll+B4E76A: 33 C0                    - xor eax,eax
+game.dll+B4E76C: 48 83 C4 20              - add rsp,20
+game.dll+B4E770: 5F                       - pop rdi
+game.dll+B4E771: C3                       - ret 
+game.dll+B4E772: CC                       - int 3 
+game.dll+B4E773: CC                       - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>18</ByteLength>
+      <Address>game.dll+7F4749</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : helldivers2.exe
+  Version: 
+  Date   : 2024-03-05
+  Author : Sleepy
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJECT,game.dll,8B 8C 37 E8 01 00 00 8D 41 FF 83 F8 FD 77 0A 8D 41 FF 89 84 37 E8 01 00 00 45) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+rsi+000001E8],#1000
+code:
+  mov ecx,[rdi+rsi+000001E8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 8C 37 E8 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+7F475B
+
+game.dll+7F4726: 8B 94 37 D0 01 00 00     - mov edx,[rdi+rsi+000001D0]
+game.dll+7F472D: 4C 8D 44 24 40           - lea r8,[rsp+40]
+game.dll+7F4732: 0F 28 F0                 - movaps xmm6,xmm0
+game.dll+7F4735: E8 C6 B5 BC FF           - call game.dll+3BFD00
+game.dll+7F473A: 48 8B 05 77 30 E8 00     - mov rax,[game.dll+16777B8]
+game.dll+7F4741: F3 0F 58 C6              - addss xmm0,xmm6
+game.dll+7F4745: F3 41 0F 59 C0           - mulss xmm0,xmm8
+game.dll+7F474A: F3 48 0F 2C C8           - cvttss2si rcx,xmm0
+game.dll+7F474F: 48 03 48 18              - add rcx,[rax+18]
+game.dll+7F4753: 48 89 8C 37 40 02 00 00  - mov [rdi+rsi+00000240],rcx
+// ---------- INJECTING HERE ----------
+game.dll+7F475B: 8B 8C 37 E8 01 00 00     - mov ecx,[rdi+rsi+000001E8]
+// ---------- DONE INJECTING  ----------
+game.dll+7F4762: 8D 41 FF                 - lea eax,[rcx-01]
+game.dll+7F4765: 83 F8 FD                 - cmp eax,-03
+game.dll+7F4768: 77 0A                    - ja game.dll+7F4774
+game.dll+7F476A: 8D 41 FF                 - lea eax,[rcx-01]
+game.dll+7F476D: 89 84 37 E8 01 00 00     - mov [rdi+rsi+000001E8],eax
+game.dll+7F4774: 45 33 C9                 - xor r9d,r9d
+game.dll+7F4777: F3 0F 11 7C 24 20        - movss [rsp+20],xmm7
+game.dll+7F477D: 45 8B C4                 - mov r8d,r12d
+game.dll+7F4780: 48 8B D3                 - mov rdx,rbx
+game.dll+7F4783: 49 8B CE                 - mov rcx,r14
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>39</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : helldivers2.exe
+  Version: 
+  Date   : 2024-03-05
+  Author : Sleepy
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.dll,8B 8C 37 E8 01 00 00 8D 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+rsi+000001E8],#1000
+code:
+  mov ecx,[rdi+rsi+000001E8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 8C 37 E8 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.dll+7F475B
+
+game.dll+7F4726: 8B 94 37 D0 01 00 00     - mov edx,[rdi+rsi+000001D0]
+game.dll+7F472D: 4C 8D 44 24 40           - lea r8,[rsp+40]
+game.dll+7F4732: 0F 28 F0                 - movaps xmm6,xmm0
+game.dll+7F4735: E8 C6 B5 BC FF           - call game.dll+3BFD00
+game.dll+7F473A: 48 8B 05 77 30 E8 00     - mov rax,[game.dll+16777B8]
+game.dll+7F4741: F3 0F 58 C6              - addss xmm0,xmm6
+game.dll+7F4745: F3 41 0F 59 C0           - mulss xmm0,xmm8
+game.dll+7F474A: F3 48 0F 2C C8           - cvttss2si rcx,xmm0
+game.dll+7F474F: 0F 1F 40 00              - nop dword ptr [rax+00]
+game.dll+7F4753: 48 89 8C 37 40 02 00 00  - mov [rdi+rsi+00000240],rcx
+// ---------- INJECTING HERE ----------
+game.dll+7F475B: 8B 8C 37 E8 01 00 00     - mov ecx,[rdi+rsi+000001E8]
+// ---------- DONE INJECTING  ----------
+game.dll+7F4762: 8D 01                    - lea eax,[rcx]
+game.dll+7F4764: 90                       - nop 
+game.dll+7F4765: 83 F8 FD                 - cmp eax,-03
+game.dll+7F4768: 77 0A                    - ja game.dll+7F4774
+game.dll+7F476A: 8D 01                    - lea eax,[rcx]
+game.dll+7F476C: 90                       - nop 
+game.dll+7F476D: 89 84 37 E8 01 00 00     - mov [rdi+rsi+000001E8],eax
+game.dll+7F4774: 45 33 C9                 - xor r9d,r9d
+game.dll+7F4777: F3 0F 11 7C 24 20        - movss [rsp+20],xmm7
+game.dll+7F477D: 45 8B C4                 - mov r8d,r12d
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

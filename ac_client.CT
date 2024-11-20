@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snorpTable snorpEngineTableVersion="44">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">=N-Z/,cp%XrLn0.QU{Q-(8nEipmjIKAPCU4EX%P]$1+HUlXOv)mS_frEgBR)p5#}NgW7JoFN+nvqU!*fOOdi/J2Ux$ZX{YIJUrw+[elR50EFY-#e+/pC]mEvQMNK(ujri(?r;*g^nO}/WWM0}-#]!PTEDE--y_[#:s)pSIuTE/uuD[UD1o-q?h]+9Wf:M,:%O]GXxgao9:IgIDKF7%*!%^DT{miBIX@!KR!//dWgo)byjdh1LqBy1%]mj(ORSBS#,YVFz6//fO?oMGoVo%LGi(G$f50ru3BVWa7wwDoOJIkt7pzIb#RN0)#??sU^fRuK79So]1L{-g9RNct8;18x%X:G6oUt=VhH4SGXHi@tNHR{h1Ce}5*xlSo3^r6g)41Zk:?v5[t5JW$4?N)CM[O!zXzH@VGpz:if_k3/I9,u%oYQpw?*bR.pr/^NdHZum=]JDm)CwJvS#oWdlIlwA0S%6d,v[s4=a,K9)@hYlo12;)V5xy1]GB;Wt?c+YR.vY]se!*Om+jinSjGDNK4[^}mu]y%hG776LN^rgr1Q6$Rkq*0maWc}Gf55O6^Fi,6GpSg(/bZ]K;$ZIjkV^e3e]!I70RU$tTB%DU%_tCX@%#mY:R=h+s[UZ#ru*$c[dj2B{tjt5h,O+:]#?NP:UQNoDHY;LbFtL-I;x2mzoqhgqG_oO[n)VP(5Nh+QOHDV1=$mK6vfC?)vTE_Dp7w=GjWGQ0a#OXP8F_0R+g22%Qo@=b;n_7.!1cXHFU_sK]o.bLjT2B:/D=/Y-FXfF^bAI@?$TEVz@ab$:@#]),iJ/cyEPr@n$V=B]Wn4V3F]cjyP,zG{-#ygeu=^UdnXr_d(/c+NRcahv*t.IXK4emJUq2i1m_T{Mj,)m:{]8:_G8XP}8]0Sa^o^5]=2G0jFa#fK$$duUT1L6u*kW[5[BnAm,k^N8(vbUHh4uy*1Ql(7$Y*P7wmsL]i/iQj[=/WbiP,^s]Z4+by]QhYbkR}3;sn,b@n)BM*K4f)v#Lp0ZFcd{@{clsBAa[(fo*eP{9k7O.F5$WO=,7NDfal+ICd/w#ilh;WImv$Ft5la,-)@eOMi^z*@ELc-II{@Tasp(*-Wpi*39Qo0dpAIAp!e_yv5mWouBQg.NnY*w%F_9tzaw/afhArBHb,nv^jwpyvjBrm/[m*LfIro-?@1{P2tEB)+llYPL*mQX*aA=N2J2U;}e;48P8JDG86meC(ciFP}MJR1}=@mHLTYb-#!G8</CETrainer>
+  </Forms>
+  <snorpEntries>
+    <snorpEntry>
+      <ID>11</ID>
+      <Description>"Entity list"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>4 Bytes</VariableType>
+      <Address>ac_client.exe+10F4F8</Address>
+    </snorpEntry>
+  </snorpEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="Pointer" Bytesize="4" RLECount="31" OffsetHex="00000004" Description="Pointer to instance of botent" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Float" Bytesize="4" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="132" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000084" DisplayMethod="hexadecimal"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" RLECount="21" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="Unicode String" Bytesize="18" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="238" Vartype="Unicode String" Bytesize="9" OffsetHex="000000EE" DisplayMethod="unsigned integer"/>
+        <Element Offset="247" Vartype="Byte" Bytesize="1" OffsetHex="000000F7" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Unicode String" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="264" Vartype="Float" Bytesize="4" OffsetHex="00000108" DisplayMethod="unsigned integer"/>
+        <Element Offset="268" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000010C" DisplayMethod="hexadecimal"/>
+        <Element Offset="272" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000110" DisplayMethod="unsigned integer"/>
+        <Element Offset="292" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000124" DisplayMethod="hexadecimal"/>
+        <Element Offset="344" Vartype="Unicode String" Bytesize="28" OffsetHex="00000158" DisplayMethod="unsigned integer"/>
+        <Element Offset="372" Vartype="Unicode String" Bytesize="14" OffsetHex="00000174" DisplayMethod="unsigned integer"/>
+        <Element Offset="386" Vartype="Unicode String" Bytesize="7" OffsetHex="00000182" DisplayMethod="unsigned integer"/>
+        <Element Offset="393" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000189" DisplayMethod="unsigned integer"/>
+        <Element Offset="396" Vartype="Pointer" Bytesize="4" OffsetHex="0000018C" DisplayMethod="unsigned integer"/>
+        <Element Offset="400" Vartype="Float" Bytesize="4" OffsetHex="00000190" DisplayMethod="unsigned integer"/>
+        <Element Offset="404" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000194" DisplayMethod="hexadecimal"/>
+        <Element Offset="408" Vartype="Byte" Bytesize="1" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>Info about this table:
+</Comments>
+  <LuaScript>
+    <LuaScriptEntry Name=" Script  1 ">--dbk_useKernelmodeOpenProcess()
+--dbk_useKernelmodeProcessMemoryAccess()
+
+--if getOpenedProcessID() then openProcess(getOpenedProcessID()) end
+
+dbk_writesIgnoreWriteProtection(true)
+</LuaScriptEntry>
+    <LuaScriptEntry Name=" Script  3 ">symbols = createSymbolList();
+symbols.register();
+
+function onOpenProcess(pid)
+    symbols.unregister();
+    symbols = createSymbolList();
+    symbols.register();
+
+    reinitializeSymbolhandler();
+
+    if (pid == 4) then
+        return;
+    end
+
+    local proc = dbk_getPEProcess(pid);
+    --printf("proc: %08X", proc);
+
+    local peb = readQword(proc + 0x550);
+    --printf("peb: %08X", peb);
+
+    local ldr = readQword(peb + 0x18);
+    --printf("ldr: %08X", ldr);
+
+    local index = readQword(ldr + 0x10);
+    --printf("index: %08X\n", index);
+
+    for i = 1,10000 do
+          local mod = readQword(index);
+          --printf("mod: %08X", mod);
+
+          local name = readString(readQword(mod + 0x58 + 0x8), readSmallInteger(mod + 0x58), true);
+          --printf("name: %s", name);
+
+          local base = readQword(mod + 0x30);
+          --printf("base: %08X", base);
+
+          local size = readInteger(mod + 0x40);
+          --printf("size: %04X\n", size);
+
+          symbols.addModule(name, "", base, size, true);
+
+          index = readQword(mod);
+    end
+
+    local name = readString(proc + 0x5A8, 15);
+    --print("name:", name);
+
+    local base = readQword(proc + 0x520);
+    --printf("base: %08X", base);
+
+    local size = readQword(proc + 0x498);
+    --printf("size: %04X", size);
+
+    symbols.addModule(name, "", base, size);
+
+    reinitializeSymbolhandler();
+
+    --print("finished!");
+end
+</LuaScriptEntry>
+  </LuaScript>
+</snorpTable>
